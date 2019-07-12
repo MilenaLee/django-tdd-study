@@ -1,6 +1,8 @@
 __pycache__/
 .ipynb_checkpoints/
+.idea/
 
 *.exe
 *.sqlite3
 *.log
+*.xml
