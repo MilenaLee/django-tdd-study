@@ -38,18 +38,23 @@ class NewVisitorTest(unittest.TestCase):
         # "1: 방탄소년단 콘서트 가기" 아이템이 추가된다
         inputbox.send_keys(Keys.ENTER)
 
-        table = self.browser.find_element_by_id("id_list_table")
-        rows = table.find_elements_by_tag_name("tr")
-        self.assertTrue(
-            any(row.text == "1: 방탄소년단 콘서트 가기" for row in rows),
-            "신규 작업이 테이블에 표시되지 않는다"
-        )
-
         # 추가 아이템을 입력할 수 있는 여분의 텍스트 상자가 존재한다
         # 다시 "방탄소년단 콘서트에서 굿즈 구입하기"라고 입력한다. (다시 말하지만 미현이는 아미이다!)
-        self.fail("Finish the test!")
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys("방탄소년단 콘서트에서 굿즈 구입하기")
+        inputbox.send_keys(Keys.ENTER)
 
         # 페이지는 다시 갱신되고, 두 개 아이템이 목록에 보인다.
+        table = self.browser.find_element_by_id("id_list_table")
+        rows = table.find_elements_by_tag_name("tr")
+        self.assertIn("1: 방탄소년단 콘서트 가기", [row.text for row in rows])
+        self.assertIn("2: 방탄소년단 콘서트에서 굿즈 구입하기", [row.text for row in rows])
+
+        # 미현이는 사이트가 입력한 목록을 잘 저장하는지 궁금하다
+        # 사이트는 그녀를 위한 특정 url을 생성해준다
+        # 이때 URL에 대한 설명도 함께 제공된다
+        self.fail("Finish the test!")
+
 
 
 if __name__ == "__main__":
