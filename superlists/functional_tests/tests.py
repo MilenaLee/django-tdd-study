@@ -26,7 +26,7 @@ class NewVisitorTest(LiveServerTestCase):
         # 웹 페이지 타이틀과 헤더가 'To-Do'를 표시하고 있다.
         self.assertIn("To-Do", self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('To-Do', header_text)
+        self.assertIn('작업 목록 시작', header_text)
 
         # 그녀는 바로 작업을 추가하리고 한다
         inputbox = self.browser.find_element_by_id("id_new_item")
@@ -62,7 +62,7 @@ class NewVisitorTest(LiveServerTestCase):
         ## 새로운 브라우저 세션을 이용해서 미현이의 정보가
         ## 쿠키를 통해 유입되는 것을 방지한다
         self.browser.quit()
-        browser = webdriver.Chrome(chromedriver_dir)
+        self.browser = webdriver.Chrome(chromedriver_dir)
 
         # 태형이가 홈페이지에서 접속한다
         # 미현의 리스트는 보이지 않는다
@@ -75,7 +75,7 @@ class NewVisitorTest(LiveServerTestCase):
         # 태형이는 아이돌이다ㅎㅎ
         inputbox = self.browser.find_element_by_id("id_new_item")
         inputbox.send_keys("신곡 작업")
-        inputbox.send_keys(keys.ENTER)
+        inputbox.send_keys(Keys.ENTER)
 
         # 태형이가 전용 URL을 취득한다.
         v_list_url = self.browser.current_url
@@ -88,6 +88,5 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn("방탄소년단 콘서트에서 굿즈 구입하기")
 
         # 둘 다 만족하고 잠자리에 든다
-
 
         self.fail("Finish the test!")
