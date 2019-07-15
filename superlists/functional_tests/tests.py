@@ -84,8 +84,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         # 미현이가 입력한 흔적이 없다는 것을 다시 확인한다
         page_text = self.browser.find_element_by_tag_name("body").text
-        self.assertNotIn("방탄소년단 콘서트 가기")
-        self.assertNotIn("방탄소년단 콘서트에서 굿즈 구입하기")
+        self.assertNotIn("방탄소년단 콘서트 가기", page_text)
+        self.assertNotIn("방탄소년단 콘서트에서 굿즈 구입하기", page_text)
 
         # 둘 다 만족하고 잠자리에 든다
 
